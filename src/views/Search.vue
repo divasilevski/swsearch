@@ -2,7 +2,18 @@
   <div v-if="!statusMessage">
     <p>Кол-во результатов по запросу '{{this.$route.query.search}}': {{searchResults.count}}</p>
     
-    {{searchResults}}
+    <div class="content">
+      <ul>
+        <li v-for="result in searchResults.results" :key="result.name">
+          <router-link 
+            class="link" 
+            :to="getLink(result.url)"
+          >
+            › {{result.name}}
+          </router-link>
+        </li>
+      </ul>
+    </div>
 
   </div>
 
@@ -40,6 +51,7 @@ export default {
 
           if (data.count) {
             this.searchResults = data
+            console.log(data)
             this.statusMessage = ''
           } else {
             const request = this.$route.query.search
@@ -54,6 +66,11 @@ export default {
     getQuery(url) {
       const splitedURL = url.split('?')
       return `?${splitedURL[splitedURL.length - 1]}`
+    },
+
+    getLink(url){
+      const splitedURL = url.split('/')
+      return `/people/${splitedURL[splitedURL.length - 2]}`
     }
   }
 }

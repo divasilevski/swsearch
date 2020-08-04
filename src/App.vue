@@ -77,4 +77,24 @@ button {
 .container {
   padding: 30px 10%;
 }
+
+.content {
+  margin: 20px 0;
+}
+
+li {
+  margin: 10px 0;
+  border: 1px dushed black;
+  list-style-type: none;
+}
+
+.link {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: darkblue;
+}
 </style>
