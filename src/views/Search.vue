@@ -15,6 +15,24 @@
       </ul>
     </div>
 
+    <div>
+      <span 
+        class="link" 
+        v-if="searchResults.previous" 
+        v-on:click="openPage(searchResults.previous)"
+      >
+        ‹‹ previous
+      </span>
+      <span v-if="searchResults.previous && searchResults.next"> | </span>
+      <span 
+        class="link" 
+        v-if="searchResults.next"
+        v-on:click="openPage(searchResults.next)"
+      >
+        next ››
+      </span>
+    </div>
+
   </div>
 
   <div v-else>{{statusMessage}}</div>
@@ -51,7 +69,6 @@ export default {
 
           if (data.count) {
             this.searchResults = data
-            console.log(data)
             this.statusMessage = ''
           } else {
             const request = this.$route.query.search
@@ -71,6 +88,10 @@ export default {
     getLink(url){
       const splitedURL = url.split('/')
       return `/people/${splitedURL[splitedURL.length - 2]}`
+    },
+
+    openPage(url) {
+      this.$router.push(`/search${this.getQuery(url)}`)
     }
   }
 }
