@@ -1,15 +1,80 @@
 <template>
   <div id="app">
-    <div>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/search">Search</router-link> |
-      <router-link to="/people/1">People</router-link> 
+
+    <header>
+      <router-link to="/" class="logo">HOME</router-link>
+      <nav>
+        <input 
+          type="text"
+          v-model="inputValue"
+          v-on:keydown.enter="search()"
+        />
+        <button v-on:click="search()">SW Search</button>
+      </nav>
+    </header>
+
+    <div class="container">
+      <router-view />
     </div>
 
-    <router-view/>
   </div>
 </template>
 
-<style>
 
+<script>
+export default {
+  data: () => ({
+    inputValue: ''
+  }),
+
+  methods: {
+    search() {
+      const search = this.inputValue.trim().toLowerCase()
+
+      if (search) {
+        this.$router.push({name: 'Search', query: {search}}).catch(() => {})    
+      }
+    }
+  }
+}
+</script>
+
+
+<style>
+* {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #eee;
+}
+
+button, input, .logo {
+  font-weight: 500;
+  font-size: 30px;
+  color: black;
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10%;
+  background-color: #fff;
+}
+
+button {
+  padding: 2px 25px;
+  background-color: orange;
+  border: none;
+  cursor: pointer;
+}
+
+.container {
+  padding: 30px 10%;
+}
 </style>
