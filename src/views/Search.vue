@@ -60,7 +60,7 @@ export default {
   methods: {
     fetchData() {
       const queryParams = this.getQuery(this.$route.fullPath)
-      const URL = `https://swapi.dev/api/people${queryParams}`
+      const URL = `https://swapi.dev/api/people/${queryParams}`
       
       fetch(URL)
         .then(response => response.json())

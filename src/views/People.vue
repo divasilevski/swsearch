@@ -22,7 +22,7 @@ export default {
   }),
 
   created() {
-    const URL = `https://swapi.dev/api/people/${this.$route.params.id}`
+    const URL = `https://swapi.dev/api/people/${this.$route.params.id}/`
 
     fetch(URL)
       .then(response => response.json())
