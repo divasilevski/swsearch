@@ -97,4 +97,8 @@ li {
 .link:hover {
   color: darkblue;
 }
+
+.small {
+  font-size: 80%;
+}
 </style>

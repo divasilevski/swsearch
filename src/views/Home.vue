@@ -20,7 +20,12 @@
       </ul>
     </div>
     
-
+    <span
+      class='link small'
+      v-on:click="clearHistory"
+    >
+      › очистить историю ‹
+    </span>
   </div>
 
   <div v-else>
@@ -38,6 +43,13 @@ export default {
 
   created() {
     this.history = this.$store.getters.history
+  },
+
+  methods: {
+    clearHistory() {
+      this.$store.commit('clearHistory')
+      this.history = []
+    }
   }
 }
 </script>
