@@ -1,7 +1,7 @@
 <template>
   <div v-if="!statusMessage">
     <h1>{{ peopleFetch.name }}</h1>
-    
+
     <div class="content">
       <pre>{{ peopleFetch }}</pre>
     </div>
@@ -31,6 +31,12 @@ export default {
       
         this.peopleFetch = data
         this.statusMessage = ''
+
+        const event = {
+          name: data.name,
+          path: this.$route.fullPath
+        }
+        this.$store.commit('pushEventToHistory', event)
       })
       .catch(error => {
         this.statusMessage = `Что-то пошло не так. Ошибка ${error.message}`
