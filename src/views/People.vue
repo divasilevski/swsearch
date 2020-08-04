@@ -1,7 +1,12 @@
 <template>
   <div v-if="!statusMessage">
-    <pre>{{ peopleFetch }}</pre>
+    <h1>{{ peopleFetch.name }}</h1>
+    
+    <div class="content">
+      <pre>{{ peopleFetch }}</pre>
+    </div>
 
+    <span class="link" v-on:click="$router.back()">‹‹ back</span>
   </div>
 
   <div v-else>{{statusMessage}}</div>
